@@ -13,4 +13,4 @@ alias steemgit_setup='docker run --privileged --rm -v $PWD:/work -v $HOME/.steem
 export GIT_USER GIT_TOKEN STEEMIT_GIT_PROJECT
 EOF
 
-cat $HOME/.steemgitrc
+source $HOME/.steemgitrc
