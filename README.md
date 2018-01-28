@@ -28,9 +28,7 @@ export STEEMIT_GIT_PROJECT=<github project for steemit posts>
 
 Curl the setup script
 ```bash
-export GITHUB_USER=r351574nc3
-export GITHUB_TOKEN=<your token>
-curl -OL https://raw.githubusercontent.com/r351574nc3/docker-git-steem-bot/master/setup.sh && sh 
+curl https://raw.githubusercontent.com/r351574nc3/docker-git-steem-bot/master/setup.sh | sh 
 source $HOME/.steemgitrc
 ```
 
@@ -52,12 +50,12 @@ Cloning into 'steemit-posts'...
 ## Posting
 
 Create a new file
-```
+```bash
 touch new-post.md
 ```
 
 Commit change
-```
+```bash
 steemgit add new-post.md
 steemgit commit -a -m "Title of Post"
 ```
@@ -65,8 +63,26 @@ steemgit commit -a -m "Title of Post"
 > **Note** The first line of the git commit isn't just the summary. It's also the title of your post
 
 Push commit
-```
-steemgit push steem master
+```bash
+~/s/steemit-posts git:master ❯❯❯ steemgit push steem master
+remote: 
+remote: > git-steem-bot@1.0.0 post /steem/steemit-posts.git/hooks        
+remote: > node index.js "steem-post-made-from-git-steem-bot." "This Post Was Created by the Docker git-steem-bot"        
+remote: 
+remote: { id: 'ae9e9e96b429040553ce8590417fd516f669e947',        
+remote:   block_num: 19361977,        
+remote:   trx_num: 26,        
+remote:   expired: false,        
+remote:   ref_block_num: 28839,        
+remote:   ref_block_prefix: 528799349,        
+remote:   expiration: '2018-01-28T03:05:18',        
+remote:   operations: [ [ 'comment', [Object] ] ],        
+remote:   extensions: [],        
+remote:   signatures:         
+remote:    [ '206b2ddeb11f7cdfe9721c51a8ac7f8ccd59397d67e529d5f71804d023fef5daba7ec8cd6c9351a270ed7a0ead2ad4ee57cae767351c2641199d0584494f11168a' ] }        
+remote: /steem/steemit-posts.git        
+To /steem/steemit-posts.git
+   48adba9..7fe7ed7  master -> master
 ```
 
 > **Note** pushing to `steem` instead of `origin` (there is no `origin`)
