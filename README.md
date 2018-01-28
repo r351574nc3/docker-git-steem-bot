@@ -6,6 +6,14 @@ Steem bot docker image for using git to post to steem
 
 ### Create Github Token
 
+1. Go to the Settings Menu
+1. Select `Developer settings`
+![](docs/images/developer_settings.png)
+1. Select `Personal access tokens`
+![](docs/images/personal_access_tokens.png)
+1. Create an access token with publishing rights
+
+
 ### Setup Environment Variables
 
 ```bash
