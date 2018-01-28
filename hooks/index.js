@@ -13,7 +13,7 @@ function main() {
     let wif = process.env.STEEM_WIF || "Not set"
     let permlink = process.argv[2]
     let title = process.argv[3]
-
+/*
     load_post().then((body) => {
         var permlink = new Date().toISOString().replace(/[^a-zA-Z0-9]+/g, '').toLowerCase();
         return steem.broadcast.commentAsync(
@@ -29,7 +29,7 @@ function main() {
     }).then((results) => {
         console.log(results)
     }) 
-
+*/
 }
 
 main()

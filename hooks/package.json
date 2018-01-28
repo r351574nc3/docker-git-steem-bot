@@ -24,6 +24,7 @@
   "homepage": "https://github.com/r351574nc3/docker-git-steem-bot#readme",
   "dependencies": {
     "bluebird": "^3.5.1",
+    "shelljs": "^0.8.1",
     "steem": "^0.7.1"
   }
 }

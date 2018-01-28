@@ -87,3 +87,70 @@ To /steem/steemit-posts.git
 
 > **Note** pushing to `steem` instead of `origin` (there is no `origin`)
 
+## Comment Options
+
+Comment options allow users to specify the following:
+* Allowing votes
+* Allowing curation rewards
+* Beneficiaries
+* Maximum Payout
+* SBD payout percentage
+
+There are several cases for this. Two most common would be rewards refusal and beneficiary assignment. Let's look at both cases.
+
+### Refusing Rewards
+
+**No Voting**
+```
+steemgit add new-post.md
+steemgit comment_options "0 SBD" 0 false false  // No rewards, no curation, no votes
+steemgit commit -a -m "Title of Post"
+```
+
+**Voting, but no rewards**
+```
+steemgit add new-post.md
+steemgit comment_options "0 SBD" 0 true false  // No rewards, no curation, yes votes
+steemgit commit -a -m "Title of Post"
+```
+
+
+### Assigning Beneficiares
+
+```
+steemgit add new-post.md
+steemgit beneficiaries gtg:2500,drakos:2500
+steemgit commit -a -m "Title of Post"
+```
+
+### Options after the fact
+
+Supposing that you already committed your post, you can still make changes before pushing.
+```
+steemgit add new-post.md
+steemgit commit -a -m "Title of Post"
+steemgit beneficiaries gtg:2500,drakos:2500
+steemgit commit -a --amend
+```
+
+## Post Metadata
+
+It's possible to add custom metadata to posts. Custom metadata has infinite use cases, so we won't go into them. This is how to do it if you need to:
+
+```
+steemgit add new-post.md
+steemgit metadata metadata.json
+steemgit commit -a -m "Title of Post"
+```
+
+### From stdin
+```
+steemgit add new-post.md
+steemgit metadata <<EOF
+json_metadata: {
+    "tags": [ "awesome" ]
+}
+EOF
+steemgit commit -a -m "Title of Post"
+```
+
