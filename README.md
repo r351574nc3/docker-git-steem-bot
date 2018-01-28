@@ -4,11 +4,26 @@ Steem bot docker image for using git to post to steem
 
 ## Getting Started
 
-Curl the setup script
+### Create Github Token
+
+### Setup Environment Variables
+
+```bash
+export GITHUB_USER=<github username>
+export GITHUB_TOKEN=<github token>
+export STEEM_NAME=<steemit user name>
+export STEEM_WIF=<steemit posting private key>
+export STEEMIT_GIT_PROJECT=<github project for steemit posts>
 ```
+
+### Setup Script
+
+Curl the setup script
+```bash
 export GITHUB_USER=r351574nc3
 export GITHUB_TOKEN=<your token>
-curl -OL https://raw.githubusercontent.com/r351574nc3/docker-git-steem-bot/master/setup.sh && sh setup.sh $GITHUB_USER $GITHUB_TOKEN steemit-posts && source $HOME/.steemgitrc
+curl -OL https://raw.githubusercontent.com/r351574nc3/docker-git-steem-bot/master/setup.sh && sh 
+source $HOME/.steemgitrc
 ```
 
 New Aliases will be added:
@@ -35,8 +50,11 @@ touch new-post.md
 
 Commit change
 ```
-steemgit commit -a -S -m "Committing change"
+steemgit add new-post.md
+steemgit commit -a -m "Title of Post"
 ```
+
+> **Note** The first line of the git commit isn't just the summary. It's also the title of your post
 
 Push commit
 ```

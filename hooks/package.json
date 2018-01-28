@@ -1,0 +1,29 @@
+{
+  "name": "git-steem-bot",
+  "version": "1.0.0",
+  "description": "Bot to post git commits to steem",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "post": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/r351574nc3/docker-git-steem-bot.git"
+  },
+  "keywords": [
+    "steem",
+    "git",
+    "docker"
+  ],
+  "author": "Leo Przybylski",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/r351574nc3/docker-git-steem-bot/issues"
+  },
+  "homepage": "https://github.com/r351574nc3/docker-git-steem-bot#readme",
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "steem": "^0.7.1"
+  }
+}

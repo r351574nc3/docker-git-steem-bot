@@ -1,0 +1,32 @@
+#!/bin/sh
+#
+#
+# To enable this hook, rename this file to "update".
+#
+# Config
+# ------
+# STEEM_USER
+# STEEM_WIF
+#
+
+# --- Command line
+
+NEWREV=$3
+
+FILES_MODIFIED=$(git diff-tree  --name-only -r $NEWREV | tail -n $(expr $(git diff-tree  --name-only -r $NEWREV | wc -l) - 1))
+
+for file in $FILES_MODIFIED
+do
+    permlink=$(basename $file md)
+    title=$(git show --pretty=tformat:%s $NEWREV | head -1)
+    git show $NEWREV:$file > /tmp/body 
+    cd hooks
+    cat /tmp/body | npm run post $permlink "$title"
+    cd -
+    rm /tmp/body
+    git push origin master
+done
+          
+
+# --- Finished
+exit 0
