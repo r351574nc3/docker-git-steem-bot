@@ -11,8 +11,7 @@ do
         PERCENT_SBD=$3
         ALLOW_VOTES=$4
         ALLOW_CURATION=$5
-        $GIT /work/$STEEMIT_GIT_PROJECT notes append -F /dev/stdin <<EOF
-----
+        $GIT notes --ref=comment_options add -F /dev/stdin <<EOF
 {
     "extensions":[],
     "operations":[
@@ -35,8 +34,7 @@ EOF
         ;;
         beneficiaries)
         BENEFICIARIES=$2
-        $GIT notes append -F /dev/stdin <<EOF
-----
+        $GIT notes --ref=beneficiaries add -F /dev/stdin <<EOF
 { "beneficiaries": "$2" }
 EOF
         exit;
@@ -47,9 +45,11 @@ EOF
         then
             METADATA_FILE=/dev/stdin
         fi
-        $GIT notes append -m "----"
-        $GIT notes append -F $METADATA_FILE
+        $GIT notes --ref=metadata add -F $METADATA_FILE
         exit;
+        ;;
+        push)
+        $GIT push --tags steem master --force
         ;;
         *)
         ;;
