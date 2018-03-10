@@ -1,0 +1,59 @@
+#!/bin/sh
+
+GIT="git -C /work/$STEEMIT_GIT_PROJECT"
+
+for i in "$@"
+do
+    case $i in
+        comment_options)
+        PREFIX="${i#*=}"
+        MAX_PAYOUT=$2
+        PERCENT_SBD=$3
+        ALLOW_VOTES=$4
+        ALLOW_CURATION=$5
+        $GIT /work/$STEEMIT_GIT_PROJECT notes append -F /dev/stdin <<EOF
+----
+{
+    "extensions":[],
+    "operations":[
+        [
+            "comment_options",
+            {
+                "author":"",
+                "permlink":"",
+                "max_accepted_payout":"$2",
+                "percent_steem_dollars": $3,
+                "allow_votes":$4,
+                "allow_curation_rewards":$5,
+                "extensions":[]
+            }
+        ]
+    ]
+}
+EOF
+        exit
+        ;;
+        beneficiaries)
+        BENEFICIARIES=$2
+        $GIT notes append -F /dev/stdin <<EOF
+----
+{ "beneficiaries": "$2" }
+EOF
+        exit;
+        ;;
+        metadata)
+        METADATA_FILE=$2
+        if [ "$METADATA_FILE" -eq "" ]
+        then
+            METADATA_FILE=/dev/stdin
+        fi
+        $GIT notes append -m "----"
+        $GIT notes append -F $METADATA_FILE
+        exit;
+        ;;
+        *)
+        ;;
+    esac
+done
+
+exec $GIT "$@"

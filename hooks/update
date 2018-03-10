@@ -19,13 +19,13 @@ for file in $FILES_MODIFIED
 do
     permlink=$(basename $file md)
     title=$(git show --pretty=tformat:%s $NEWREV | head -1)
-    git show $NEWREV:$file > /tmp/body 
+    git show $NEWREV:$file > /tmp/body
+    git notes show > /tmp/notes 2> /dev/null
     cd hooks
-    git notes show $NEWREV
-    #cat /tmp/body | npm run post $permlink "$title"
-    #cd -
-    #rm /tmp/body
-    #git push origin master
+    cat /tmp/body | npm run post $permlink "$title"
+    cd -
+    rm /tmp/body
+    git push origin master
 done
           
 exit 1
